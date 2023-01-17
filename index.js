@@ -81,5 +81,5 @@ exports.DataStructureTool = DataStructureTool
  * @returns {boolean}
  */
 function isNullish(val) {
-  return [undefined, null, NaN, ''].includes(val)
+  return [undefined, null, ''].includes(val) || isNaN(val)
 }
