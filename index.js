@@ -73,12 +73,12 @@ class DataStructureTool {
   static setFromArrayByKey(arr, key, set = new Set()) {
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
 
-    for (const el of arr) {
-      if (isNullish(el[key])) continue
+    for (let i = 0; i < arr.length; i++) {
+      if (isNullish(arr[i][key])) continue
 
       if (!isNullish(key)) {
-        set.add(el[key])
-      } else set.add(el)
+        set.add(arr[i][key])
+      } else set.add(arr[i])
     }
 
     return set
