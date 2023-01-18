@@ -1,4 +1,6 @@
 class DataStructureTool {
+  // TODO: optional isNullish checking/recursive chaining
+
   /**
    * ADD-TO-ARRAY-IN-MAP
    * @param map{Map}
@@ -57,7 +59,6 @@ class DataStructureTool {
       if (!isNullish(keyOfVal)) {
         map.set(arr[i][key], arr[i][keyOfVal])
       } else map.set(arr[i][key], arr[i])
-
     }
 
     return map
@@ -86,6 +87,52 @@ class DataStructureTool {
 }
 
 exports.DataStructureTool = DataStructureTool
+
+// DataStructureTool.addToArrayInMap(a, 'vasya', 'abdul', 'children')
+// DataStructureTool.addToArrayInMap(a, 'vasya', 'dima', 'children')
+//
+// const flat = require('flat')
+//
+// const m = new Map()
+//
+// mapSetter(m, 'key.a', 'abdul', 'array')
+//
+// console.log('test', m)
+//
+// function mapSetter(map, key, value, type) {
+//   const firstKey = key.split('.')[0]
+//
+//   const keys = key.split('.')
+//
+//   keys.splice(0, 1)
+//
+//   const keyWithoutFirstKey = keys.join('.')
+//
+//   console.log(keyWithoutFirstKey)
+//
+//   if (map.has(firstKey)) {
+//     const data = map.get(firstKey)
+//
+//     if (eval('data.' + keyWithoutFirstKey.split('.').join('?.'))) {
+//       const _val = eval('data.' + keyWithoutFirstKey)
+//
+//       const obj = {
+//         [key]: Array.isArray(_val) ? [..._val, value] : value
+//       }
+//     }
+//   } else {
+//     m.set(
+//       firstKey,
+//       keyWithoutFirstKey.includes('.')
+//         ? flat.unflatten({ [keyWithoutFirstKey]: type === 'array' ? [value] : value })
+//         : type === 'array'
+//         ? [value]
+//         : value
+//     )
+//   }
+// }
+
+// console.log(a)
 
 /**
  * IS-NULLISH
