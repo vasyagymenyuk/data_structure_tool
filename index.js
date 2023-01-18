@@ -4,18 +4,29 @@ class DataStructureTool {
    * @param map{Map}
    * @param key{any}
    * @param val{any}
+   * @param keyOfArray
    */
-  static addToArrayInMap(map, key, val) {
+  static addToArrayInMap(map, key, val, keyOfArray = null) {
     if (isNullish(key)) return
 
     const isArr = Array.isArray(val)
 
     if (map.has(key)) {
-      if (isArr) map.get(key).push(...val)
-      else map.get(key).push(val)
+      const arr = keyOfArray ? map.get(key)[keyOfArray] : map.get(key)
+
+      if (isArr) {
+        arr.push(...val)
+      } else {
+        arr.push(val)
+      }
     } else {
-      if (isArr) map.set(key, [...val])
-      else map.set(key, [val])
+      if (isArr) {
+        if (keyOfArray) map.set(key, { [keyOfArray]: [...val] })
+        else map.set(key, [...val])
+      } else {
+        if (keyOfArray) map.set(key, { [keyOfArray]: [val] })
+        else map.set(key, [val])
+      }
     }
   }
 
