@@ -51,12 +51,13 @@ class DataStructureTool {
 
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
 
-    for (const el of arr) {
-      if (isNullish(el[key])) continue
+    for (let i = 0; i < arr.length; i++) {
+      if (isNullish(arr[i][key])) continue
 
       if (!isNullish(keyOfVal)) {
-        map.set(el[key], el[keyOfVal])
-      } else map.set(el[key], el)
+        map.set(arr[i][key], arr[i][keyOfVal])
+      } else map.set(arr[i][key], arr[i])
+
     }
 
     return map
