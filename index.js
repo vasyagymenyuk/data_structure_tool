@@ -92,22 +92,21 @@ class DataStructureTool {
    * `keyOfVal` - This key will be used to get value from each arr element.
    * Example: Map.set(arr[indx][key], arr[indx][keyOfVal])
    *
-   * @param arr
-   * @param key
-   * @param keyOfVal
+   * @param {
+   * arr,
+   * key = 'id',
+   * valKey = null
+   * }
    * @returns {Map<any, any>}
    */
+
   static mapFromArrayByKey({ arr, key = 'id', valKey = null }) {
     const map = new Map()
 
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
 
     for (let i = 0; i < arr.length; i++) {
-      if (isNullish(arr[i][key])) continue
-
-      if (!isNullish(valKey)) {
-        map.set(arr[i][key], arr[i][valKey])
-      } else map.set(arr[i][key], arr[i])
+      this.setValToMap(map, arr[i], key, valKey)
     }
 
     return map
@@ -124,11 +123,7 @@ class DataStructureTool {
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
 
     for (let i = 0; i < arr.length; i++) {
-      if (isNullish(arr[i][key])) continue
-
-      if (!isNullish(key)) {
-        set.add(arr[i][key])
-      } else set.add(arr[i])
+      this.addValToSet(set, arr[i], key)
     }
 
     return set
@@ -152,11 +147,9 @@ class DataStructureTool {
 
   /**
    *
-   * @param {*} map
+   * @param {*} set
    * @param {*} val
    * @param {*} key
-   * @param {*} valKey
-   * @returns
    */
   static addValToSet(set, val, key) {
     if (!isNullish(val[key])) {
@@ -167,8 +160,6 @@ class DataStructureTool {
   }
 }
 
-exports.DataStructureTool = DataStructureTool
-
 /**
  * IS-NULLISH
  * @param val
@@ -177,3 +168,5 @@ exports.DataStructureTool = DataStructureTool
 function isNullish(val) {
   return [undefined, null, ''].includes(val) || Number.isNaN(val)
 }
+
+module.exports = DataStructureTool
