@@ -1,6 +1,53 @@
 class DataStructureTool {
   // TODO: optional isNullish checking/recursive chaining
 
+  static structsFromArrayByKey({ arr, structs = [] }) {
+    if (!Array.isArray(arr)) throw new Error('arr parameter must be an array')
+
+    const results = []
+
+    let stat = new Set()
+
+    for (let i = 0; i < structs.length; i++) {
+      const struct = structs[i]
+
+      for (let k = 0; k < arr.length; k++) {
+        // MAP
+        if (struct.type === 'map') {
+          const statKey = `${i}-map`
+
+          if (!stat.has(statKey)) {
+            results[i] = new Map()
+
+            stat.add(statKey)
+            this.setValToMap(results[i], arr[k], struct.key, struct.valKey)
+          } else {
+            this.setValToMap(results[i], arr[k], struct.key, struct.valKey)
+          }
+        }
+        // SET
+        else if (struct.type === 'set') {
+          const statKey = `${i}-set`
+
+          if (!stat.has(statKey)) {
+            results[i] = new Set()
+
+            stat.add(statKey)
+            this.addValToSet(results[i], arr[k], struct.key)
+          } else {
+            this.addValToSet(results[i], arr[k], struct.key)
+          }
+        }
+        // SMTHG ELSE
+        else {
+          throw new Error(`type of structs[${i}] is not correct. Possible type options is: [map, set]`)
+        }
+      }
+    }
+
+    return results
+  }
+
   /**
    * ADD-TO-ARRAY-IN-MAP
    * @param map{Map}
@@ -85,6 +132,38 @@ class DataStructureTool {
     }
 
     return set
+  }
+
+  /**
+   *
+   * @param {*} map
+   * @param {*} val
+   * @param {*} valKey
+   * @param {*} key
+   * @returns
+   */
+  static setValToMap(map, val, key, valKey) {
+    if (isNullish(val[key])) return
+
+    if (!isNullish(valKey)) {
+      map.set(val[key], val[valKey])
+    } else map.set(val[key], val)
+  }
+
+  /**
+   *
+   * @param {*} map
+   * @param {*} val
+   * @param {*} key
+   * @param {*} valKey
+   * @returns
+   */
+  static addValToSet(set, val, key) {
+    if (!isNullish(val[key])) {
+      if (!isNullish(key)) {
+        set.add(val[key])
+      } else set.add(val)
+    }
   }
 }
 
