@@ -6,15 +6,17 @@ class DataStructureTool {
    * @param map{Map}
    * @param key{any}
    * @param val{any}
-   * @param keyOfArray
+   * @param valKey
+   * @param nullishValidation
    */
-  static addToArrayInMap(map, key, val, keyOfArray = null) {
-    if (isNullish(key)) return
+  static addToArrayInMap({ map, key, val, valKey = null, nullishKeyValidation = false, nullishValValidation = false }) {
+    if (nullishKeyValidation && isNullish(key)) return
+    if (nullishValValidation && isNullish(val)) return
 
     const isArr = Array.isArray(val)
 
     if (map.has(key)) {
-      const arr = keyOfArray ? map.get(key)[keyOfArray] : map.get(key)
+      const arr = valKey ? map.get(key)[valKey] : map.get(key)
 
       if (isArr) {
         arr.push(...val)
@@ -23,10 +25,10 @@ class DataStructureTool {
       }
     } else {
       if (isArr) {
-        if (keyOfArray) map.set(key, { [keyOfArray]: [...val] })
+        if (keyOfArray) map.set(key, { [valKey]: [...val] })
         else map.set(key, [...val])
       } else {
-        if (keyOfArray) map.set(key, { [keyOfArray]: [val] })
+        if (valKey) map.set(key, { [valKey]: [val] })
         else map.set(key, [val])
       }
     }
@@ -48,7 +50,7 @@ class DataStructureTool {
    * @param keyOfVal
    * @returns {Map<any, any>}
    */
-  static mapFromArrayByKey(arr, key = 'id', keyOfVal = null) {
+  static mapFromArrayByKey({ arr, key = 'id', valKey = null }) {
     const map = new Map()
 
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
@@ -56,8 +58,8 @@ class DataStructureTool {
     for (let i = 0; i < arr.length; i++) {
       if (isNullish(arr[i][key])) continue
 
-      if (!isNullish(keyOfVal)) {
-        map.set(arr[i][key], arr[i][keyOfVal])
+      if (!isNullish(valKey)) {
+        map.set(arr[i][key], arr[i][valKey])
       } else map.set(arr[i][key], arr[i])
     }
 
@@ -87,52 +89,6 @@ class DataStructureTool {
 }
 
 exports.DataStructureTool = DataStructureTool
-
-// DataStructureTool.addToArrayInMap(a, 'vasya', 'abdul', 'children')
-// DataStructureTool.addToArrayInMap(a, 'vasya', 'dima', 'children')
-//
-// const flat = require('flat')
-//
-// const m = new Map()
-//
-// mapSetter(m, 'key.a', 'abdul', 'array')
-//
-// console.log('test', m)
-//
-// function mapSetter(map, key, value, type) {
-//   const firstKey = key.split('.')[0]
-//
-//   const keys = key.split('.')
-//
-//   keys.splice(0, 1)
-//
-//   const keyWithoutFirstKey = keys.join('.')
-//
-//   console.log(keyWithoutFirstKey)
-//
-//   if (map.has(firstKey)) {
-//     const data = map.get(firstKey)
-//
-//     if (eval('data.' + keyWithoutFirstKey.split('.').join('?.'))) {
-//       const _val = eval('data.' + keyWithoutFirstKey)
-//
-//       const obj = {
-//         [key]: Array.isArray(_val) ? [..._val, value] : value
-//       }
-//     }
-//   } else {
-//     m.set(
-//       firstKey,
-//       keyWithoutFirstKey.includes('.')
-//         ? flat.unflatten({ [keyWithoutFirstKey]: type === 'array' ? [value] : value })
-//         : type === 'array'
-//         ? [value]
-//         : value
-//     )
-//   }
-// }
-
-// console.log(a)
 
 /**
  * IS-NULLISH
