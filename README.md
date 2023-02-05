@@ -5,6 +5,7 @@ There is some example of usage DataStructureTool
 const DataStructureTool = require('./index')
 
 // EXAMPLE FOR structsFromArrayByKey METHOD
+```JavaScript
 const users = [
 { id: 234, name: 'vasya', branchId: 145 },
 { id: 235, name: 'dima', branchId: 146 }
@@ -43,11 +44,13 @@ allBranchIds
 console.log(state.user.nameById)
 console.log(state.user.branchIdByName)
 console.log(state.branches.allBranchIds)
+```
 
 // ======================================== //
 
-// EXAMPLE FOR mapFromArrayByKey METHOD
+EXAMPLE FOR mapFromArrayByKey METHOD
 
+```JavaScript
 const persons = [
 { id: 234, name: 'vasya', branchId: 145 },
 { id: 235, name: 'dima', branchId: 146 }
@@ -60,10 +63,4 @@ valKey: 'id'
 })
 
 console.log(persById)
-
-/_
-Map(2)
-{ 'vasya' => 234,
-'dima' => 235 }
-_/
-// ======================================== //
+```
