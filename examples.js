@@ -1,4 +1,4 @@
-const { DataStructureTool } = require('./index')
+const DataStructureTool = require('./index')
 
 const users = [
   { id: 234, name: 'vasya', branchId: 145 },
@@ -40,4 +40,26 @@ console.log(state.user.nameById)
 console.log(state.user.branchIdByName)
 console.log(state.branches.allBranchIds)
 
+// ======================================== //
+
+// EXAMPLE FOR mapFromArrayByKey METHOD
+
+const persons = [
+  { id: 234, name: 'vasya', branchId: 145 },
+  { id: 235, name: 'dima', branchId: 146 }
+]
+
+const persById = DataStructureTool.mapFromArrayByKey({
+  arr: persons,
+  key: 'name',
+  valKey: 'id'
+})
+
+console.log(persById)
+
+/* 
+Map(2)
+ { 'vasya' => 234, 
+   'dima' => 235  }
+*/
 // ======================================== //
