@@ -2,7 +2,17 @@ class DataStructureTool {
   // TODO: optional isNullish checking/recursive chaining
 
   static structsFromArrayByKey({ arr, structs = [] }) {
+    if (!structs?.length) throw new Error('structs parameter must be not empty array')
     if (!Array.isArray(arr)) throw new Error('arr parameter must be an array')
+    if (!arr.length) {
+      const results = []
+      for (const struct of structs) {
+        if (struct.type === 'map') results.push(new Map())
+        if (struct.type === 'set') results.push(new Set())
+        if (struct.type === 'obj') results.push({})
+      }
+      return results
+    }
 
     const results = []
 
@@ -20,6 +30,12 @@ class DataStructureTool {
 
         for (const obj of arr) {
           results[i].add(obj[struct.key])
+        }
+      } else if (struct.type === 'obj') {
+        results[i] = {}
+
+        for (const obj of arr) {
+          results[i][obj[struct.key]] = obj[struct.valKey]
         }
       } else {
         throw new Error(`type of structs[${i}] is not correct. Possible type options are: [map, set]`)
