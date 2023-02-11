@@ -2,14 +2,20 @@
 
 There is some example of usage DataStructureTool
 
+```JavaScript
 const DataStructureTool = require('./index')
 
-// EXAMPLE FOR structsFromArrayByKey METHOD
+```
+
+- EXAMPLE FOR structsFromArrayByKey METHOD
+
 ```JavaScript
-const users = [
-  { id: 234, name: 'vasya', branchId: 145 },
-  { id: 235, name: 'dima', branchId: 146 }
-]
+const users = []
+
+for (let i = 0; i < 1000; i++) {
+  users.push({ id: i, name: `User ${i}`, branchId: (i % 100) + 3 })
+}
+
 
 const [nameById, branchIdByName, allBranchIds] = DataStructureTool.structsFromArrayByKey({
   arr: users,
@@ -31,34 +37,19 @@ const [nameById, branchIdByName, allBranchIds] = DataStructureTool.structsFromAr
   ]
 })
 
-const state = {
-  user: {
-    nameById,
-    branchIdByName
-  },
-  branches: {
-    allBranchIds
-  }
-}
-
-console.log(state.user.nameById)
-console.log(state.user.branchIdByName)
-console.log(state.branches.allBranchIds)
+console.log(nameById)
+console.log(branchIdByName)
+console.log(allBranchIds)
 
 ```
 
 // ======================================== //
 
-EXAMPLE FOR mapFromArrayByKey METHOD
+- EXAMPLE FOR mapFromArrayByKey METHOD
 
 ```JavaScript
-const persons = [
-  { id: 234, name: 'vasya', branchId: 145 },
-  { id: 235, name: 'dima', branchId: 146 }
-]
-
 const persById = DataStructureTool.mapFromArrayByKey({
-  arr: persons,
+  arr: users,
   key: 'name',
   valKey: 'id'
 })
