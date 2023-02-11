@@ -6,42 +6,23 @@ class DataStructureTool {
 
     const results = []
 
-    let stat = new Set()
-
     for (let i = 0; i < structs.length; i++) {
       const struct = structs[i]
 
-      for (let k = 0; k < arr.length; k++) {
-        // MAP
-        if (struct.type === 'map') {
-          const statKey = `${i}-map`
+      if (struct.type === 'map') {
+        results[i] = new Map()
 
-          if (!stat.has(statKey)) {
-            results[i] = new Map()
-
-            stat.add(statKey)
-            this.setValToMap(results[i], arr[k], struct.key, struct.valKey)
-          } else {
-            this.setValToMap(results[i], arr[k], struct.key, struct.valKey)
-          }
+        for (const obj of arr) {
+          results[i].set(obj[struct.key], obj[struct.valKey])
         }
-        // SET
-        else if (struct.type === 'set') {
-          const statKey = `${i}-set`
+      } else if (struct.type === 'set') {
+        results[i] = new Set()
 
-          if (!stat.has(statKey)) {
-            results[i] = new Set()
-
-            stat.add(statKey)
-            this.addValToSet(results[i], arr[k], struct.key)
-          } else {
-            this.addValToSet(results[i], arr[k], struct.key)
-          }
+        for (const obj of arr) {
+          results[i].add(obj[struct.key])
         }
-        // SMTHG ELSE
-        else {
-          throw new Error(`type of structs[${i}] is not correct. Possible type options is: [map, set]`)
-        }
+      } else {
+        throw new Error(`type of structs[${i}] is not correct. Possible type options are: [map, set]`)
       }
     }
 
