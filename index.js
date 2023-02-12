@@ -102,8 +102,12 @@ class DataStructureTool {
 
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
 
-    for (let i = 0; i < arr.length; i++) {
-      this.setValToMap(map, arr[i], key, valKey)
+    for (const item of arr) {
+      if (!isNullish(valKey)) {
+        map.set(item[key], item[valKey])
+      } else {
+        map.set(item[key], item)
+      }
     }
 
     return map
