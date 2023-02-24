@@ -2,7 +2,7 @@ const DataStructureTool = require('./index')
 
 const users = []
 
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 2; i++) {
   users.push({ id: i, name: `User ${i}`, branchId: (i % 100) + 3 })
 }
 
@@ -27,9 +27,9 @@ const [nameById, branchIdByName, allBranchIds] = DataStructureTool.structsFromAr
   ]
 })
 
-console.log(nameById)
-console.log(branchIdByName)
-console.log(allBranchIds)
+// console.log(nameById)
+// console.log(branchIdByName)
+// console.log(allBranchIds)
 
 // ======================================== //
 
@@ -39,6 +39,13 @@ const persById = DataStructureTool.mapFromArrayByKey({
   arr: users,
   key: 'name',
   valKey: 'id'
+})
+
+DataStructureTool.addToArrayInMap({
+  map: persById,
+  key: 'User 2',
+  val: ['+77077777777', '+77777777777'],
+  valKey: 'phones'
 })
 
 console.log(persById)
