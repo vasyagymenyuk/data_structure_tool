@@ -62,14 +62,20 @@ class DataStructureTool {
     if (map.has(key)) {
       const arr = valKey ? map.get(key)[valKey] : map.get(key)
 
-      if (isArr) {
-        arr.push(...val)
+      if (Array.isArray(arr)) {
+        if (isArr) {
+          arr.push(...val)
+        } else {
+          arr.push(val)
+        }
       } else {
-        arr.push(val)
+        throw new TypeError(
+          `value in received Map by key [${valKey ? `"${key}"."${valKey}"` : `"${key}"`}] is not an array`
+        )
       }
     } else {
       if (isArr) {
-        if (keyOfArray) map.set(key, { [valKey]: [...val] })
+        if (valKey) map.set(key, { [valKey]: [...val] })
         else map.set(key, [...val])
       } else {
         if (valKey) map.set(key, { [valKey]: [val] })
