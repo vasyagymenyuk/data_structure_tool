@@ -1,6 +1,6 @@
 # Data Structure Tool
 
-There is some example of usage DataStructureTool
+There is some examples of usage DataStructureTool
 
 ```JavaScript
 const DataStructureTool = require('./index')
