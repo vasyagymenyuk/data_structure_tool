@@ -17,5 +17,10 @@
   },
   "devDependencies": {
     "prettier": "^2.8.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasyagymenyuk/data_structure_tool.git"
+  },
+  "homepage": "https://github.com/vasyagymenyuk/data_structure_tool#readme"
 }
