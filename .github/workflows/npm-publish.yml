@@ -18,6 +18,12 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: node vers
+        run: node -v
+
+      - name: npm vers
+        run: npm -v
+
       - name: Publish to npm
         run: npm publish
         env:
