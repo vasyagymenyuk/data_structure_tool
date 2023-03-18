@@ -1,4 +1,17 @@
 {
+  "name": "data_structure_tool",
+  "version": "1.0.0",
+  "description": "Helper for working with data structures as Map, Set and Object in JavaScript",
+  "main": "index.js",
+  "keywords": [
+    "data",
+    "structures",
+    "helper",
+    "npm",
+    "package"
+  ],
+  "author": "Vasiliy Gymenyuk",
+  "license": "MIT",
   "dependencies": {
     "flat": "^5.0.2"
   },
