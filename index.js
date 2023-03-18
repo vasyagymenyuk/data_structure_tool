@@ -1,5 +1,5 @@
 class DataStructureTool {
-  static _structOptions = ['map', 'set', 'obj']
+  static _structOptions = ['set', 'map', 'obj']
 
   static structsFromArrayByKey({ arr, structs }) {
     if (!structs?.length) throw new Error('structs parameter must be not empty array')
