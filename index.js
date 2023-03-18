@@ -67,6 +67,7 @@ class DataStructureTool {
    */
   static addToArrayInMap({ map, key, val, valKey = null, nullishKeyValidation = false, nullishValValidation = false }) {
     if (nullishKeyValidation && isNullish(key)) return
+
     if (nullishValValidation && isNullish(val)) return
 
     const isArr = Array.isArray(val)
