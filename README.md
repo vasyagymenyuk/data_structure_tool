@@ -6,6 +6,8 @@ There is some examples of usage DataStructureTool
 const DataStructureTool = require('data_structure_tool')
 ```
 
+// ======================================== //
+
 - EXAMPLE FOR `structsFromArrayByKey` method
 
 ```JavaScript
@@ -56,7 +58,7 @@ const persIdByName = DataStructureTool.mapFromArrayByKey({
 })
 ```
 
-persIdByName equals:
+result will be following:
 
 ```JavaScript
 Map(3) { 'Michael' => 11, 'Karen' => 12, 'Tony' => 13 }
