@@ -12,16 +12,16 @@
   ],
   "author": "Vasiliy Gymenyuk",
   "license": "MIT",
-  "dependencies": {
-    "flat": "^5.0.2"
-  },
-  "scripts": {
-    "precommit": "npm-version patch && git add package.json"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run precommit"
     }
+  },
+  "scripts": {
+    "precommit": "npm-version patch && git add package.json"
+  },
+  "dependencies": {
+    "flat": "^5.0.2"
   },
   "devDependencies": {
     "husky": "^8.0.3",
