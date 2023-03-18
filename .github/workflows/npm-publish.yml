@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '16.x'
 
+      - name: Log in to npm registry
+        run: npm login --registry=https://registry.npmjs.org/ --scope=@vasyagymenyuk/data_structure_tool --always-auth
+
       - name: Publish to npm
         run: npm publish
         env:
