@@ -21,6 +21,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm version patch
+
       - name: Publish to npm
         run: npm publish --access public
         env:
