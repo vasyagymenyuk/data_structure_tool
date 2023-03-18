@@ -21,6 +21,9 @@ jobs:
 
       - run: npm ci
 
+      - run: git config --global user.email "vasyagymenyuk@yandex.ru"
+      - run: git config --global user.name "vasyagymenyuk"
+
       - run: npm version patch
 
       - name: Publish to npm
