@@ -1,16 +1,29 @@
 class DataStructureTool {
-  // TODO: optional isNullish checking/recursive chaining
+  static _structOptions = ['set', 'map', 'obj']
 
-  static structsFromArrayByKey({ arr, structs = [] }) {
+  static structsFromArrayByKey({ arr, structs }) {
     if (!structs?.length) throw new Error('structs parameter must be not empty array')
     if (!Array.isArray(arr)) throw new Error('arr parameter must be an array')
+
     if (!arr.length) {
       const results = []
-      for (const struct of structs) {
-        if (struct.type === 'map') results.push(new Map())
-        if (struct.type === 'set') results.push(new Set())
-        if (struct.type === 'obj') results.push({})
+
+      const structForType = {
+        map: () => new Map(),
+        set: () => new Set(),
+        obj: () => ({})
       }
+
+      for (const struct of structs) {
+        if (structForType[struct.type]) {
+          results.push(structForType[struct.type]())
+        } else {
+          throw new Error(
+            `[${struct.type}] struct type is not correct. Possible type options are: [${this._structOptions}]`
+          )
+        }
+      }
+
       return results
     }
 
@@ -38,7 +51,7 @@ class DataStructureTool {
           results[i][obj[struct.key]] = obj[struct.valKey]
         }
       } else {
-        throw new Error(`type of structs[${i}] is not correct. Possible type options are: [map, set]`)
+        throw new Error(`type of structs[${i}] is not correct. Possible type options are: [${this._structOptions}]`)
       }
     }
 
