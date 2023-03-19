@@ -1,12 +1,12 @@
 # Data Structure Tool
 
-There is some examples of usage DataStructureTool
+## There is some examples of usage DataStructureTool
 
 ```JavaScript
 const DataStructureTool = require('data_structure_tool')
 ```
 
-`structsFromArrayByKey` method
+## `structsFromArrayByKey` method
 
 ```JavaScript
 const users = []
@@ -40,7 +40,7 @@ branchIdByName === Map(3) { 'Michael' => 1, 'Karen' => 2, 'Tony' => 3 }
 allBranchIds === Set(3) { 1, 2, 3 }
 ```
 
-`mapFromArrayByKey` method
+## `mapFromArrayByKey` method
 
 ```JavaScript
 const persIdByName = DataStructureTool.mapFromArrayByKey({
@@ -56,7 +56,7 @@ result will be following:
 Map(3) { 'Michael' => 11, 'Karen' => 12, 'Tony' => 13 }
 ```
 
-`addToArrayInMap` method
+## `addToArrayInMap` method
 
 ```JavaScript
 const users = [
@@ -160,7 +160,7 @@ Map(2) {
 }
 ```
 
-`setFromArrayByKey` method
+## `setFromArrayByKey` method
 
 ```JavaScript
 const salesmen = [
