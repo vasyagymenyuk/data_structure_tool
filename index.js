@@ -143,7 +143,11 @@ class DataStructureTool {
     if (!Array.isArray(arr)) throw new Error('first parameter must be an array')
 
     for (let i = 0; i < arr.length; i++) {
-      this.addValToSet(set, arr[i], key)
+      if (Array.isArray(arr[i][key])) {
+        for (const item of arr[i][key]) {
+          set.add(item)
+        }
+      } else this.addValToSet(set, arr[i], key)
     }
 
     return set
